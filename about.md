@@ -11,5 +11,6 @@ key: page-about
 #Just say something about yourself. :+1:
 
 {% highlight javascript %}
-(() => console.log('a rookie from BUPT'))();
+a rookie from BUPT
+try to learn computer science
 {% endhighlight %}

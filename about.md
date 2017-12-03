@@ -8,8 +8,8 @@ titles:
 key: page-about
 ---
 
-Just say something about yourself. :+1:
-A rookie.
+#Just say something about yourself. :+1:
+
 {% highlight javascript %}
-(() => console.log('hello, world!'))();
+(() => console.log('a rookie from BUPT'))();
 {% endhighlight %}

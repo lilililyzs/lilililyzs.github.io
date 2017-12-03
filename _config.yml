@@ -29,8 +29,8 @@ nav_lists:
     url: /about.html
 
 ## GitHub repository (if the site is hosted by GitHub) ##
- repository:  lilililyzs/lilililyzs.github.io
- repository_tree:  master
+repository: lilililyzs/lilililyzs.github.io
+repository_tree: master
 
 ## Language & timezone ##
 lang: zh #the language of your site, eg: en(English), zh(简体中文), zh-Hans(简体中文), zh-Hant(繁體中文)
@@ -39,10 +39,10 @@ timezone: Asia/Shanghai
 ## Author & social ##
 author:
   name: EDLMM | 李一之
-   email:lyzsss@outlook.com  #your Email address e.g. someone@site.com
+  email: lyzsss@outlook.com #your Email address e.g. someone@site.com
   # facebook:  #your Facebook username
   # twitter:  #your Twitter username
-   github:lilililyzs  #your GitHub username
+  github: lilililyzs  #your GitHub username
   # googleplus:  #your Google+ username
   # weibo:  #your Weibo username
   # douban:  #your Douban username
@@ -50,7 +50,7 @@ author:
 
 ## Comment system (Disqus) ##
 disqus:
-  shortname:edlmm  #the Disqus shortname for the site
+  shortname: edlmm  #the Disqus shortname for the site
 
 ## Google Analytics ##
 # ga_tracking_id:  #Google analytics id for the site

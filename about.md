@@ -9,7 +9,7 @@ key: page-about
 ---
 
 Just say something about yourself. :+1:
-
+A rookie.
 {% highlight javascript %}
 (() => console.log('hello, world!'))();
 {% endhighlight %}

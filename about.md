@@ -8,9 +8,9 @@ titles:
 key: page-about
 ---
 
-#Just say something about yourself. :+1:
+a rookie student from BUPT
+trying to learn computer science
 
+<!-- javascirpt高亮？ md这个注释格式真6
 {% highlight javascript %}
-a rookie from BUPT
-try to learn computer science
-{% endhighlight %}
+{% endhighlight %} -->

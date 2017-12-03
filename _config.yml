@@ -13,8 +13,8 @@
 
 ## Base settings ##
 # url:  #!the base hostname & protocol for your site e.g. https://www.someone.com (!!required!!)
-#baseurl: lilililyzs.github.io
 url: https://lilililzys.github.io
+baseurl: /lilililyzs.github.io
 title: EDLMM |  李一之的博客
 description: > #this means to ignore newlines until "nav_lists:"
   a simple blog

@@ -2,6 +2,7 @@
 layout: post
 title: 数字逻辑知识点总结
 published: true
+mathjax:true
 ---
 ## 第一章 开关变量
 

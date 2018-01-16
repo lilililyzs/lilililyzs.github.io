@@ -271,9 +271,9 @@ $$
     ``` vhdl
     with scase select
       f<= d0 when "00",
-       <= d1 when "01",
-       <= d2 when "10",
-       <= d3 when others;
+          d1 when "01",
+          d2 when "10",
+          d3 when others;
     ```
 
   - 条件赋值：有优先级，而且不局限于单个信号，且不必互斥

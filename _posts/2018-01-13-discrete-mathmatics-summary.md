@@ -2,7 +2,6 @@
 layout: post
 title: 离散数学知识点总结
 mathjax: true
-published: false
 tags: summary
 key: 20180118
 modify_date: 2018-01-18

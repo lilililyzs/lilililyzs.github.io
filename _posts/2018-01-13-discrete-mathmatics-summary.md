@@ -2,14 +2,14 @@
 layout: post
 title: 离散数学知识点总结
 mathjax: true
-tags: summary
+tags: 应考归纳
 key: 20180118
 modify_date: 2018-01-18
 ---
 
 **仅供个人期末回顾使用，如有错漏请谅解**
 
-
+<!--more-->
 
 老师提供的复习重点
 

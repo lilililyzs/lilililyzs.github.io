@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 数据结构
+title: 数据结构知识点总结
 mathjax: true
-tags: summary
+tags: 应考归纳
 ---
 记住全部知识点好难……真的要多翻书，多回顾！
 

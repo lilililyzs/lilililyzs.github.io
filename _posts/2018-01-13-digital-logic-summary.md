@@ -2,7 +2,7 @@
 layout: post
 title: 数字逻辑知识点总结
 mathjax: true
-tags: summary
+tags: 应考归纳
 excerpt_separator: <!--more-->
 ---
 还有第六章数字系统没有完成

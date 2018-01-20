@@ -13,12 +13,56 @@ modify_date: 2018-01-18
 
 老师提供的复习重点
 
-> 1.关系：性质、等价关系、偏序关系的属性及拓扑排序。
-> 2.群论：同态、同构、半群和群的特性及证明、群编码。
-> 3.概率：条件概率、Bayes Theorem。
-> 4.递推关系：找出递推关系、方程求解、生成函数求解。
-> 5.图：哈密顿回路、欧拉回路、最短路径、平面性判定、最小着色数（含着色多项式）、传输网最大流量。
-> 6.树：树的特性、最小生成树及算法。
+> 1.关系：性质、等价关系、偏序关系的属性及拓扑排序。  
+> 2.群论：同态、同构、半群和群的特性及证明、群编码。  
+> 3.概率：条件概率、Bayes Theorem。  
+> 4.递推关系：找出递推关系、方程求解、生成函数求解。  
+> 5.图：哈密顿回路、欧拉回路、最短路径、平面性判定、最小着色数（含着色多项式）、传输网最大流量。  
+> 6.树：树的特性、最小生成树及算法。  
+
+
+
+# Chapter 7 Discrete Probability
+
+
+
+# Chapter 8 Advanced Counting Techniques
+
+### 8-1 recurrence relation
+
+- recurrence relation 必须涵盖低阶表达式；用R.R.来求一般表达式的时候可以代进去求，直到代到initial condition
+- bit string中不出现2 consecutive 0s 的问题，注意初始条件
+
+### 8-2 solving recurrence
+
+- k阶定常系数线性齐次递推关系  k-LiHoReCoCo $$a_n = c_1a_{n−1} + … + c_ka_{n−k}$$，C必须非零，而且这里a之和a有关；如果确定了初始条件，该递推关系有唯一解
+- 由k-LiHoReCoCo得到的**characteristic equation** 特征方程：$$x^k=c_1x^{k-1}+c_2x^{k-2}+...+c_k$$，注意次数和阶数的对应；方程的解称为characteristic roots
+- theorem 1：对于2阶的递推式，通过证明可以知道，**如果c1, c2 is real，r1 !=r2**$$\{a_n\}\ is\ a\ solution\ of\ a_n = c_1a_{n−1} +c_2a_{n-2}\leftrightarrow a_n=\alpha _1r_1^n+\alpha _2r_2^n$$
+  - 求出特征根后，再代入两个initial conditions 即可求得两个系数，求得表达式
+  - 求解后可以分别比较RR和表达式验证
+- theorem 2：适用于别的情况 **c1,c2 is real ,c2!=0 and r1=r2**，$$\{a_n\}\ is\ a\ solution\ of\ a_n = c_1a_{n−1} +c_2a_{n-2}\leftrightarrow a_n=\alpha _1r_0^n+n\cdot\alpha _2r_0^n$$
+- theorem 3：对有k阶而且**有不同根**的情况进行讨论$$a_n=\alpha _1r_1^n+\alpha _2r_2^n...+\alpha_kr_k^n$$
+- theorem 4：最一般的公式，设此时有**t个不同解，并且出现次数为m1,m2,...,mt**，则有...（看书吧），此时要解方程得到的系数有$$\Sigma _{i=1}^tm_i$$个
+  - 可能要通过theorem4 求三阶，解方程的时候可以用完全立方和/差公式
+- theorem 5: LiNoReCoCo通解=LiNoReCoCo特解+**对应LiHoReCoCo通解** 
+  - **LiNoReCoCo** = LiHoReCoCo+ F(n)
+  - 如果F(n)是线性方程，比如F(n)=2n一类的，可以设F(n)特解P(n)=cn+d，代入**LiNoReCoCo**后根据系数为0可以得到方程组，解出c和d
+  - 当指数函数时，如$$F(n)=7^n$$，则设特解$$F(n)=C\cdot 7^n$$
+  - 多阶幂函数的情况应该不要求，有时间再看
+
+### 8-3 Divide and Conquer
+
+- 由recurrence$$f(n)=af(n/b)+c$$ ，可以推出$$f(n)=a^kf(1)+\sum_{j=0}^{j=k-1} a^jg(n/{b^j})$$，这个要记
+- 当g(n)=c为常数的时候，我们可以得到 f(n)的时间复杂度
+  - $$a>1 \rightarrow O(n^{log_ba})$$
+  - $$a=1 \rightarrow O(logn)$$
+  - 代入记忆的式子里面的时候，可以得到f(n)关于n的表达式
+- **Master Theorem**，上一个式子的推广，此时$$g(n)=cn^d$$，则有 f(n)的时间复杂度
+  - $$ a<b^d \rightarrow O(n^d)$$
+  - $$ a=b^d \rightarrow O(n^dlogn)$$
+  - $$a>b^d \rightarrow O(n^{log_ba})$$
+
+### 8-4 Generating Function
 
 
 
@@ -183,6 +227,8 @@ $$
 
 
 
+
+
 ### 9-5 Fundamental Homomorphism Theorem and Normal Subgroup
 
 - natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$，则$$f: G\rightarrow G/R$$是**onto homomorphism**
@@ -268,24 +314,77 @@ $$
 
 ### 10-3 Representing Graphs
 
-- ​
+- adjacency list 和 adjacency matrices 都是熟悉的内容
+- **incidence matrices**：一个Boolean Matrix，行序号是结点，列序号是边，为1的时候表示该点incident with the edge
+- **isomorphism** between graphs
+  - 除了结点的名字不一样以外，别的都一样
+  - 另外可以发现这个isomorphism是equivalence relation
+  - 几个可以判断**不是isomorphism**的条件：n(edges), n(vertices), degree sequence
+  - 另外还可以从某个点出发构造子图，然后从判断的另一个图里面找到度相同的点，看能不能构造相同的子图
+- 一道有意思的题：$$if\ G\ and\ \overline G\ is\ isomorphic,then\ v\equiv 0\ or\ 1(mod\ 4)$$，用两个图的边数之和等于Kn来解
 
-# Chapter 8 Advanced Counting Techniques 
+### 10-4 Connectivity
 
-### 8-1
+- **simple** path/circuit：不通过同一条边多于一次
+- connectedness of undirected graph: there is **a path between every pair of distinct vertices**
+- connected component: 非联通图里面的最大联通子图
+- **cut vertex** and **cut edge** 就是去掉以后，使得connected component变得disconnected
+- nonseparable graphs: 不存在cut vertex的图，比如$$K_n$$去掉了一个点以及所有跟它incident的边，就变成了$$K_{n-1}$$，在vertex connectivity的角度而言它比一个存在cut vertex的图更加"connected"；我们用minimal number of vertices in a vertex cut $$\kappa (G)$$来表示；一个图可以称作k-connected 如果 $$\kappa(G)\geq k$$
+- 于是同样的有edge connectivity 的概念，同时引出$$\lambda (G)$$； 可以得到$$ \kappa(G) \leq \lambda(G)\leq min_{v\in V}deg(v)$$
+- **strongly connected** 指的是directed graph中对任意的(a,b)和(a,b)都存在path；而weakly connected则针对undirected graph；underlying undirected graph是从directed graph构造出来的
+- 图的connectedness和simple circuit/path 的length 都可以作为判断isomorphism 的invariant
 
-### 8-2
+### 10-5 Euler and Hamilton Paths
 
-### 8-3 Divide and Conquer
+- Euler circuit/path: simple circuit/path **containing every edge of G**
+- a connected multigraph with at least two vertices has an Euler circuit **if and only if** each of the vertices has even degree; the graph with Euler path has exactly two vertices with odd degree 
+- Hamilton ciruit/path: simple circuit/path **containing every vertex of G**
+- **sufficient conditions for Hamilton cirtcuit**
+  - **Dirac's theorem**: $$G\ with\ vertices\ n\geq 3, deg_{v\in V}(v) \geq n/2 \rightarrow G\ has\ Hamliton\ circuit$$
+  - **Ore's theorem**:  $$G\ with\ vertices\ n\geq 3, deg(v)+deg(u) \geq n,\forall u,v\ that\ u\ not\ adjacent\ to\ v \rightarrow G\ has\ Hamliton\ circuit$$
+  - the number of edges $$m\geq (n^2-3n-6)/2$$
+- 编n位格雷码的问题可以转换为在n-cube中找Hamilton circuit
+- 这一节的题目都很迷
 
-- 由recurrence$$f(n)=af(n/b)+c$$ ，可以推出$$f(n)=a^kf(1)+\sum_{j=0}^{j=k-1} a^jg(n/{b^j})$$，这个要记
-- 当g(n)=c为常数的时候，我们可以得到 f(n)的时间复杂度
-  - $$a>1 \rightarrow O(n^{log_ba})$$
-  - $$a=1 \rightarrow O(logn)$$
-  - 代入记忆的式子里面的时候，可以得到f(n)关于n的表达式
-- **Master Theorem**，上一个式子的推广，此时$$g(n)=cn^d$$，则有 f(n)的时间复杂度
-  - $$ a<b^d \rightarrow O(n^d)$$
-  - $$ a=b^d \rightarrow O(n^dlogn)$$
-  - $$a>b^d \rightarrow O(n^{log_ba})$$
+### 10-6 Shortest-Path Problems
+
+- Dijkstra Algorithm: 找到从指定顶点出发，到其他个点的最短路径；更新最短路径以后，每次都选一个到出发点有最短距离的边；算法复杂度是 O(n^2)
+- 在本教材中寻找各点之间的最短距离也是用dijkstra方法；注意$$D^k$$的定义是，列出点到点之间**长度为k**的**最小的边权值之和**，最后再把所有求到的D^n合并起来，每个位置取各矩阵中最小的数字（但是这样好像得不到路径）；注意和Floyd区分开，Floyd是求经过某点能得到的最短路径
+- Traveling Salesperson Problem: find a Hamiltion circuit with minimum total weight；如果出了这个题，唯一的解法就是列出所有的Hamilton circuit然后慢慢比较= =
+
+### 10-7 Planar Graph
+
+- Planar graph：可以被画在平面上并且没有交叉弧的图；用分区域的办法来确定能不能画成planar graph
+- Euler's Formula: **connected planar simple graph** $$\rightarrow$$ r=e -v+2 ；可以用induction证明，证明中的$$G_n$$代表添加了n条边，添加边的时候要分两类讨论；同时通过formula可以推出一个planar graph不论怎么画它的region的数量是不变的
+- degree of region: 一个region所含的边，注意那种一条的算两个degree
+- Corollary（necessity）用这些来判断不是planar graph 比formula方便
+  - n-node planar graph G has **at most (3n-6) edges**，$$e\leq 3v-6$$；证明：先用region的边至少为3得到2e>= 3r，然后代入Euler‘s formula 
+  - if G is a simple planar graph, then **$$\exists v, deg(v)\leq 5$$** ，如果大于5，也就是每个deg都大于等于6，则2e大于等于6v，则不满足上一个corollary
+  - 类似corollary1的有：connecte simple planar graph with v>=3 and **no circuits of length 3**, then e<=2v-4；没有这种circuit就意味着deg(R)>=4，剩余证明和上面一样
+- **Kuratowski's Theorem**: 一个non-planar graph的边用更长的path来替代以后还是non planar graph；一个图里如果包含了non-planar graph 那它也是；K5,K33都是non-planar graph，所以如果在某个图里面能发现他们就可以判断是non-planr
+
+### 10-8 Graph Coloring
+
+- dual graph：将一个地图模型化以后得到的图，注意在构造的时候两个区域只有一个共同点的不算相邻
+- chromatic number $$\chi(G)$$：最少需要的颜色种类；注意可能考试会出求**edge chromatic number**的题目
+- the chromatic number of **a planar graph** is 4
+- Kn, Kmn, Cn的 $$\chi$$分别是n，2还有分奇偶讨论
+- chromatic polinomial of G $$P_G(k)$$: 指的是图G在用k种颜色上色的时候，能有几种相邻不同色的组合；从$$P_G(0)$$开始加大k，第一个非零的k就是该图的chi
+- 一个图的chromatic polynomial是它的所有component的polynomial的积
+- 定义一种带下标的子图$$G_e$$，代表**去掉了边e但是没有去掉任何结点**的G
+- quotient graph $$G^R$$: R是equivalence relation，将partition以后的class当作一个点，如果不同class的点之间存在相邻点则令这两个点连接
+- 于是我们有公式$$P_G(x)=P_{G_e}(x)-P_{G^e}(x)$$ 原P=去掉一条边的P-合并两个点的P，通过这个公式可以在求P的时候可以先把图化简成两个比较好求的图然后再计算
+
+### 10-9  Transportation Networks(sup)
+
+- source and sink 起点和终点
+- capacity 该边的可以通过的最大流量，方程F（flow）指对每条边的分配流量，对每条边的标记是(C,F)，对顶点的标记是该点的序号；**the value of the flow**就是最终流入sink的值
+- FF(labeling) algorithm：通过BFS对各个结点label，然后不断求增广路径，最难的地方是求增广路径的时候应该算上virtual edge，通过它的逆流（取消流）也可以构成增广路径，等价于改变了流量的分配
+- 定义网络中的一个集合 cut 为 **所有从source到sink的path都至少经过cut中的一条边**，容易推出 value(F)<=c(K)；当求得minimum cut（应该是边数最少）时，可以知道**maximum value of flow=the capacity of this minimum cut**
+
+
+
+# Chapter 11
+
 
 

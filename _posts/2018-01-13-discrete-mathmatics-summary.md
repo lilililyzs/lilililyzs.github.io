@@ -46,11 +46,14 @@ modify_date: 2018-01-18
   - 可能要通过theorem4 求三阶，解方程的时候可以用完全立方和/差公式
 - theorem 5: LiNoReCoCo通解=LiNoReCoCo特解+**对应LiHoReCoCo通解** 
   - **LiNoReCoCo** = LiHoReCoCo+ F(n)
-  - 如果F(n)是线性方程，比如F(n)=2n一类的，可以设F(n)特解P(n)=cn+d，代入**LiNoReCoCo**后根据系数为0可以得到方程组，解出c和d
-  - 当指数函数时，如$$F(n)=7^n$$，则设特解$$F(n)=C\cdot 7^n$$
+  - 如果F(n)是线性方程，比如F(n)=2n一类的，可以设an的特解P(n)=cn+d，代入**LiNoReCoCo**后根据系数为0可以得到方程组，解出c和d
+  - 当指数函数时，如$$F(n)=7^n$$，则设特解$$P(n)=C\cdot 7^n$$
   - 多阶幂函数的情况应该不要求，有时间再看
 
-### 8-3 Divide and Conquer
+### 8-3 Divide and Conquer and Recurrence Relation
+
+- ​
+- ​
 
 - 由recurrence$$f(n)=af(n/b)+c$$ ，可以推出$$f(n)=a^kf(1)+\sum_{j=0}^{j=k-1} a^jg(n/{b^j})$$，这个要记
 - 当g(n)=c为常数的时候，我们可以得到 f(n)的时间复杂度
@@ -76,7 +79,7 @@ modify_date: 2018-01-18
 
 - irreflexive, asymmetric, antisymmetric（只能在主对角线）
 
-- 对于**R-relative set of x**，即$$R(x)=\{y\in B|xRy\},x\in A,R=A\times B$$，集合的二元操作可以直接提取出括号(proof)：
+- 对于**R-relative set of x**，即$$R(x)=\{y\in B\|xRy\},x\in A,R=A\times B$$，集合的二元操作可以直接提取出括号(proof)：
 $$
 A_1 \subseteq A_2 \rightarrow R(A_1)\subseteq R(A_2) \\ 
 R(A_1\cup A_2) = R(A_1)\cup R(A_2)\\
@@ -229,6 +232,9 @@ $$
 
 
 
+
+
+
 ### 9-5 Fundamental Homomorphism Theorem and Normal Subgroup
 
 - natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$，则$$f: G\rightarrow G/R$$是**onto homomorphism**
@@ -247,10 +253,9 @@ $$
 
 - encoding function：$$e:B^m \rightarrow B^n,m<n$$；并且把e(b)=x称作代表b的**code word**
 - 在$$x\rightarrow x_t$$的过程中，如果出现了小于等于k个错误，可以立刻发现$$x_t$$不是code word，就说明 方程e可以**detects k or fewer errows**；换言之，大于k个错误的时候有可能发现不了
-- Haming Distance：$$\delta(x,y)= |x \oplus y|$$ ，求x和y有几个不同
-
+- Haming Distance：$$\delta(x,y)= \|x \oplus y\|$$ ，求x和y有几个不同
   - 可以发现$$\delta(x,y) \leq \delta(x,z)+\delta(z,y)$$
-- **minimum distance** of an encoding function：$$min\{\delta(e(x),e(y)|x,y\in B^m\}$$，编码后的最小差异
+- **minimum distance** of an encoding function：$$min\{\delta(e(x),e(y)\|x,y\in B^m\}$$，编码后的最小差异
 - minimum distance 是k+1时，等价于方程 e 可以检测 k or fewer errors：如果传输出现了k+1个错误，则有可能传输完以后虽然错了，但是发生和别的code word 长得一样的情况，无法被检测出来
 - **group code**：令编码后的$$(B^n,\oplus)$$作为一个群，则有
 
@@ -258,7 +263,7 @@ $$
   - 并且由于$$\oplus$$是community的，所以$$B^n$$是一个Abelian group，它的所有子群都是**normal subgroup**
   - 于是根据群的性质，$$\delta(x,y)=\eta,\eta$$指N中**minimum weight of nonzero code word **,注意只有在group code中才满足这个性质
 - 定义 mod-2 boolean product D * E，就是矩阵乘法，同时将展开式中的加法换成**异或运算**，乘法换成**与预算**；同时矩阵间还有 mod-2 sum $$D\oplus E$$，结果是同一位置上的元素进行疑惑运算；两种矩阵运算满足乘法分配律
-- 由上述定义的二元操作可以定义函数$$f_H:B^n \rightarrow B^r,\ f_H(x)=x*H_{n \times r}$$，并且可以证明这是一个homomorphism；于是，对于这个函数的$$kernel(f_H)={x\in B^n|x*H=\overline 0\}=N$$,是 Bn的正规子群；特别的，令r=n-m的时候，H就成为 parity check matrix，可以利用它进行编码，校验位长度为r
+- 由上述定义的二元操作可以定义函数$$f_H:B^n \rightarrow B^r,\ f_H(x)=x*H_{n \times r}$$，并且可以证明这是一个homomorphism；于是，对于这个函数的$$kernel(f_H)={x\in B^n\|x*H=\overline 0\}=N$$,是 Bn的正规子群；特别的，令r=n-m的时候，H就成为 parity check matrix，可以利用它进行编码，校验位长度为r
 - H 的两部分在不同的过程中组合方式不同：在**编码**的时候$$e_H=b_{1\times m}*H_{m\times n},\ H_{m\times n}=E_{m\times m}\&H_{m\times r}$$；在**校验**的时候，如果满足$$x_{1\times n}*H_{n\times r}=\overline 0\ H_{n\times r}={H_{m\times r}\over E_{r\times r}}$$说明传输过来的x属于noraml subgroup的一员，也就是code word的一员，没有传输错误
 - 对于同一个H得到的编码和译码组合(e,d)，在k个或以下传输错误出现的时候，他们可以**correct k or fewer errors**
 - **maximum likelihood technique**：选择和传输过来的码串 最相似的code word，再选对应的b
@@ -297,8 +302,8 @@ $$
   - directed graph：分为 in-degree=$$deg^-(v)$$ 和out-degree=$$deg^+(v)$$
   - 对于一个顶点来说，有向和无向的时候的度数是相同的
 - Handshaking Theorem：
-  - 无向图中，$$2|E|=\Sigma_{v\in V}deg(v)$$；同时可以推出deg为奇数的顶点的个数一定是偶数
-  - 有向图中，$$|E|={1\over 2 }\Sigma_{v\in V}deg(v)=\Sigma_{v\in V}deg^-(v)=\Sigma_{v\in V}deg^+(v)$$
+  - 无向图中，$$2\|E\|=\Sigma_{v\in V}deg(v)$$；同时可以推出deg为奇数的顶点的个数一定是偶数
+  - 有向图中，$$\|E\|={1\over 2 }\Sigma_{v\in V}deg(v)=\Sigma_{v\in V}deg^-(v)=\Sigma_{v\in V}deg^+(v)$$
 - 应用：判断一个度序列 degree sequence 是否**graphic**，可以数是不是有偶数个奇数度
 - special graph structures
   - complete graphs $$K_n$$
@@ -307,8 +312,8 @@ $$
   - n-cubes $$Q_n$$，Q3是立方体，构造方法是上一层的点一一对应，得到两倍的顶点
   - **complete bipartite graph** $$K_{m,n}$$：有m+n个点，m*n条边，所有的点都能到另一个集合的任意点
 - bipartite：用（V1,V2）标记，将simple graph 分为两个集合，集合内的点互不相邻，所有的边的两端都分别属于V1和V2；可以用着色来理解，一共涂两种颜色，所有相邻的点的颜色都不同
-- matching：bipartite中的一个边的集合M，其中这些边的顶点都不相同；没有在matching中的点称作unmatched；**maximum matching**指该集合包含了能包含的最多的边；**complete matching from V1 to V2**指的是|M|=|V1|
-- hall's marriage theorem: $$(V1,V2)$$has complete matching from V1 to V2 $$\leftrightarrow |N(A)|\geq |A|$$，for all subsets A of V1，其实蛮好理解，就是要把V1的点分配完，那么它的相邻的点或者说它引出去的边的数量肯定要多于它本身的顶点数
+- matching：bipartite中的一个边的集合M，其中这些边的顶点都不相同；没有在matching中的点称作unmatched；**maximum matching**指该集合包含了能包含的最多的边；**complete matching from V1 to V2**指的是\|M\|=\|V1\|
+- hall's marriage theorem: $$(V1,V2)$$has complete matching from V1 to V2 $$\leftrightarrow \|N(A)\|\geq |A|$$，for all subsets A of V1，其实蛮好理解，就是要把V1的点分配完，那么它的相邻的点或者说它引出去的边的数量肯定要多于它本身的顶点数
 - **subgraph**：如果H=(W,F)是G=(V,E)的subgraph，那么它的点集和边集都是它的子集，两者不等时称作proper；通过某个点集 induce 出来的subgraph 保留这个点集里面的点以及可以形成的边
 - edge contraction ：通过合并点来构造新的图；谜一样的东西，应该没有考点
 

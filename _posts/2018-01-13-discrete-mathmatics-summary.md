@@ -89,9 +89,7 @@ $$
 - combing relations: relation之间进行集合的二元运算
 - $$coposition\  of\  R\  and\ S: a\ S\circ R\ c$$， 先进行后面的R，再到S，即$$(S\circ R)(A)=S(R(A))$$(proof)
 - 定义$$R^n=R^{n-1}\circ R$$ ，**$$R\ is\ transitive\ \leftrightarrow R^n \subseteq R$$** (proof)
--[ ] (R◦S)◦T = R◦(S ◦T)，所以 R◦Rn+1 = R◦(Rn ◦R) = (R◦Rn)◦R = Rn+1 ◦R，也就是虽然矩阵乘法不满足交换律，但是在relation中求高阶coposition的时候是可以使用交换律的
-
-
+- (R◦S)◦T = R◦(S ◦T)，所以 R◦Rn+1 = R◦(Rn ◦R) = (R◦Rn)◦R = Rn+1 ◦R，也就是虽然矩阵乘法不满足交换律，但是在relation中求高阶coposition的时候是可以使用交换律的
 ### 9.2 n-ray Relations
 
 - primary key 都不一样
@@ -235,6 +233,7 @@ $$
 
 
 
+
 ### 9-5 Fundamental Homomorphism Theorem and Normal Subgroup
 
 - natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$，则$$f: G\rightarrow G/R$$是**onto homomorphism**
@@ -313,7 +312,7 @@ $$
   - **complete bipartite graph** $$K_{m,n}$$：有m+n个点，m*n条边，所有的点都能到另一个集合的任意点
 - bipartite：用（V1,V2）标记，将simple graph 分为两个集合，集合内的点互不相邻，所有的边的两端都分别属于V1和V2；可以用着色来理解，一共涂两种颜色，所有相邻的点的颜色都不同
 - matching：bipartite中的一个边的集合M，其中这些边的顶点都不相同；没有在matching中的点称作unmatched；**maximum matching**指该集合包含了能包含的最多的边；**complete matching from V1 to V2**指的是\|M\|=\|V1\|
-- hall's marriage theorem: $$(V1,V2)$$has complete matching from V1 to V2 $$\leftrightarrow \|N(A)\|\geq |A|$$，for all subsets A of V1，其实蛮好理解，就是要把V1的点分配完，那么它的相邻的点或者说它引出去的边的数量肯定要多于它本身的顶点数
+- hall's marriage theorem: $$(V1,V2)$$has complete matching from V1 to V2 $$\leftrightarrow \|N(A)\|\geq \|A\|$$，for all subsets A of V1，其实蛮好理解，就是要把V1的点分配完，那么它的相邻的点或者说它引出去的边的数量肯定要多于它本身的顶点数
 - **subgraph**：如果H=(W,F)是G=(V,E)的subgraph，那么它的点集和边集都是它的子集，两者不等时称作proper；通过某个点集 induce 出来的subgraph 保留这个点集里面的点以及可以形成的边
 - edge contraction ：通过合并点来构造新的图；谜一样的东西，应该没有考点
 

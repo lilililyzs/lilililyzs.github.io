@@ -154,15 +154,15 @@ $$
 
 - **closure of R with respect to property P** 是由R构建的新的一个R，并且添加的pair的**数量要最小**
 - 用digraph表示的relation的三种closure的构建方式
-- $$connectivity\ relation\ R^*$$或者$$R^\infty$$ 是所有$$R^n$$ 的union，同时也是**R的transitive closure（应该不用证，太复杂）**
+- $$R^\infty$$ 是所有$$R^n$$ 的union，同时也是**R的transitive closure（应该不用证，太复杂）**
 - 用来证明connectivity relation is transitive closure 的几个theorem
   - $$A\subseteq B,\ C\subseteq B \rightarrow A\cup C \subseteq B$$
   - $$A\subseteq S,\ B\subseteq T \rightarrow A\circ B \subseteq S\circ T$$
     - 由第二个可以推出 $$R\subseteq S \rightarrow R^n \subseteq S^n$$  
   - $$R\ is\ transitive \rightarrow R^n\ is\ transitive(prooved\ by (R^n)^2=(R^2)^n\subset R^n)$$
 - 因为一条path最长不过n-1，所以transitive closure里面求$$R^k$$的时候最多只用求到$$R^n$$,n是顶点数
-- 一般的算法，直接用矩阵求$$R^*:M_{r^*}=M_R\vee M_R^{[2]}\vee M_R^{[3]}\vee M_R^{[4]}...\vee M_R^{[n]}$$
-- Warshall Algorithm：$$w_{ij}^{[k]}=w_{ij}^{[k-1]}\vee(w_{ix}^{[k-1]}\wedge w_{xj}^{[k-1]})$$w是W矩阵的一个元素，找中间点
+- 一般的算法，直接用矩阵求$$R^*:M_{R^*}=M_{R^{\infty}}\vee E_n=E_n \vee M_R\vee M_R^{[2]}\vee M_R^{[3]}\vee M_R^{[4]}...\vee M_R^{[n]}$$
+- Warshall Algorithm：$$w_{ij}^{[k]}=w_{ij}^{[k-1]}\vee(w_{ix}^{[k-1]}\wedge w_{xj}^{[k-1]})$$w是W矩阵的一个元素，找出Vk是中间点的路径并且更新
 
 ### 9-5 Equivalence Relation
 
@@ -182,7 +182,7 @@ $$
 
 - **total order/linear order**表示所有的元素之间都**comparable**，也就是存在关系
 
-- **well order**：全序的情况下，所有的非空子集都有一个**最小**的值，比如$$(Z,\leq)$$就不是
+- **well order**：全序的情况下，所有的非空子集都有一个**最小**的值，比如$$(Z,\leq)$$就不是，利用这个下界可以得到well order induction
 
 - 构造**hasse diagram**：去掉自己的loop，所有transitive的第三边去掉，从下到上画有向图
 
@@ -283,6 +283,7 @@ $$
 
 
 
+
 ### 9-5 Fundamental Homomorphism Theorem and Normal Subgroup
 
 - natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$，则$$f: G\rightarrow G/R$$是**onto homomorphism**
@@ -311,7 +312,7 @@ $$
   - 并且由于$$\oplus$$是community的，所以$$B^n$$是一个Abelian group，它的所有子群都是**normal subgroup**
   - 于是根据群的性质，$$\delta(x,y)=\eta,\eta$$指N中**minimum weight of nonzero code word **,注意只有在group code中才满足这个性质
 - 定义 mod-2 boolean product D * E，就是矩阵乘法，同时将展开式中的加法换成**异或运算**，乘法换成**与预算**；同时矩阵间还有 mod-2 sum $$D\oplus E$$，结果是同一位置上的元素进行疑惑运算；两种矩阵运算满足乘法分配律
-- 由上述定义的二元操作可以定义函数$$f_H:B^n \rightarrow B^r,\ f_H(x)=x*H_{n \times r}$$，并且可以证明这是一个homomorphism；于是，对于这个函数的$$kernel(f_H)={x\in B^n\|x*H=\overline 0\}=N$$,是 Bn的正规子群；特别的，令r=n-m的时候，H就成为 parity check matrix，可以利用它进行编码，校验位长度为r
+- 由上述定义的二元操作可以定义函数$$f_H:B^n \rightarrow B^r,\ f_H(x)=x*H_{n \times r}​$$，并且可以证明这是一个homomorphism；于是，对于这个函数$$kernel(f_H)={x\in B^n\|x*H=\overline 0\}=N$$,是 Bn的正规子群；特别的，令r=n-m的时候，H就成为 parity check matrix，可以利用它进行编码，校验位长度为r
 - H 的两部分在不同的过程中组合方式不同：在**编码**的时候$$e_H=b_{1\times m}*H_{m\times n},\ H_{m\times n}=E_{m\times m}\&H_{m\times r}$$；在**校验**的时候，如果满足$$x_{1\times n}*H_{n\times r}=\overline 0\ H_{n\times r}={H_{m\times r}\over E_{r\times r}}$$说明传输过来的x属于noraml subgroup的一员，也就是code word的一员，没有传输错误
 - 对于同一个H得到的编码和译码组合(e,d)，在k个或以下传输错误出现的时候，他们可以**correct k or fewer errors**
 - **maximum likelihood technique**：选择和传输过来的码串 最相似的code word，再选对应的b

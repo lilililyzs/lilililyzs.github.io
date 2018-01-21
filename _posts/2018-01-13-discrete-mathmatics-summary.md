@@ -3,8 +3,8 @@ layout: post
 title: 离散数学知识点总结
 mathjax: true
 tags: 应考归纳
-key: 20180118
-modify_date: 2018-01-18
+key: 20180121
+modify_date: 2018-01-21
 ---
 
 **仅供个人期末回顾使用，如有错漏请谅解**
@@ -24,7 +24,39 @@ modify_date: 2018-01-18
 
 # Chapter 7 Discrete Probability
 
+### 7-1 Introduction
 
+- sampling with/without **replacement**: 取出小球后是/否放回 
+- complementary event：$$\overline E=S-E$$
+- 求两个事件的并集的概率时要去重：$$P(E_1 \cup E_1)=P(E_1)+P(E_2)-P(E_1 \cap E_2)$$
+
+### 7-2 Theory
+
+- sample space 有n个element，**uniform distribution**就是每个element概率相等为1/n
+- p(E)=$$\Sigma{p(s)}$$,s是事件E涵盖的outcomes
+- $$p(E\|F)={p(E \cap F)\over p(F)}$$，由这个式子可以推出 $$E,F\ independent \leftrightarrow p(E\cap F)=p(E)p(F)$$，发生了F跟E的概率没有关系；同时可以推广到pairwise independent，多个事件之间两两独立
+- n次独立实验中求成功k次的概率可以用$$C_n^kp^{k}q^{n-k}$$
+- **random variable**是一个function from sample space to real numbers
+- 求需要几个人可以使一个房间里的人生日同一天概率大于1/2：1-p(x=n) n个人生日都不同的概率
+- 求需要几个人可以使一个房间里的人在今天生日概率大于1/2：1-p(x=n) n个人生日都不在今天的概率
+
+### 7-3 Bayes Theorem
+
+- 最基本的公式：$$p(F\|E)={p(E \cap F)\over p(E)}={p(E \cap F)\over p(E\cap F)+p(E\cap \overline F)}={p(E\|F)p(F) \over p(E\|F)p(F)+p(E\|\overline F)p(\overline F)}$$
+- 类似的，用这个推导过程可以求出推广的bayes ，分子不变，分母变成了多个S的子集，它们的并集为S
+- 在spam mail的题目里面如果没有说明spam的概率，则默认等概率；出现多个关键字的情况下，可以把公式简化成$$r(w1,w2)={p(w1)p(w2)\over p(w1)p(w2)+q(w1)q(w2)}$$，其中p是w在spam中出现的概率，q是在not spam 中出现的概率
+
+### 7-4 Expected Value and Variance
+
+- 期望值=概率*random variable的值
+- expectation满足线性关系
+  - E(x1+x2+x3...)=E(x1)+E(x2)+E(x3)..
+  - E(ax+b)=aE(x)+b
+- geometric distribution ：当$$p(X=k)=(1-p)^{k-1}p$$时称为几何分布；此时E(X)=1/p
+- 伯努利实验n次成功的期望为np
+- 如果p(X=r1 and Y=r2)=p(X=r1)p(Y=r2)，则称 X,Y相互独立，此时由E(XY)=E(X)E(Y)
+- 方差variance : V(X)=sum(random variable和均值的差的平方 × 概率)**$$=E(X^2)-E(X)^2$$**，注意题目有没有提出standard
+- 如果事件相互独立，则variance也满足线性关系V(X1+X2+X3...)=V(X1)+V(X2)+V(X3)...
 
 # Chapter 8 Advanced Counting Techniques
 
@@ -46,20 +78,23 @@ modify_date: 2018-01-18
   - 可能要通过theorem4 求三阶，解方程的时候可以用完全立方和/差公式
 - theorem 5: LiNoReCoCo通解=LiNoReCoCo特解+**对应LiHoReCoCo通解** 
   - **LiNoReCoCo** = LiHoReCoCo+ F(n)
-  - 如果F(n)是线性方程，比如F(n)=2n一类的，可以设an的特解P(n)=cn+d，代入**LiNoReCoCo**后根据系数为0可以得到方程组，解出c和d
+  - 如果F(n)是线性方程，比如F(n)=2n一类的，可以设an的特解P(n)=cn+d，代入**LiNoReCoCo**后根据系数为0可以得到方程组，解出c和d，最后再代入初值
   - 当指数函数时，如$$F(n)=7^n$$，则设特解$$P(n)=C\cdot 7^n$$
   - 多阶幂函数的情况应该不要求，有时间再看
 
 ### 8-3 Divide and Conquer and Recurrence Relation
 
-- ​
-- ​
-
-- 由recurrence$$f(n)=af(n/b)+c$$ ，可以推出$$f(n)=a^kf(1)+\sum_{j=0}^{j=k-1} a^jg(n/{b^j})$$，这个要记
+- 几个RR 
+  - BS  f(n)=f(n/2)+2
+  - merge sort f(n)=f(n/2)+n
+  - 找最大最小值  f(n)=2f(n/2)+2
+  - fast multiplication f(2n)=3f(n)+Cn
+- 由RR $$f(n)=af(n/b)+c$$ ，可以推出$$f(n)=a^kf(1)+\sum_{j=0}^{j=k-1} a^jg(n/{b^j})$$，这个要记
 - 当g(n)=c为常数的时候，我们可以得到 f(n)的时间复杂度
   - $$a>1 \rightarrow O(n^{log_ba})$$
   - $$a=1 \rightarrow O(logn)$$
-  - 代入记忆的式子里面的时候，可以得到f(n)关于n的表达式
+  - 将$$n=b^k,g(n)=c,a^k=a^{log_bn}=n^{log_ba}$$代入记忆的式子里面的时候，可以得到f(n)关于n的表达式
+  - $$f(n)=C_1n^{log_ba}+C_2,C_1=f(1)+c/(a-1),C_2=-c/(a-1)$$
 - **Master Theorem**，上一个式子的推广，此时$$g(n)=cn^d$$，则有 f(n)的时间复杂度
   - $$ a<b^d \rightarrow O(n^d)$$
   - $$ a=b^d \rightarrow O(n^dlogn)$$
@@ -67,7 +102,20 @@ modify_date: 2018-01-18
 
 ### 8-4 Generating Function
 
-
+- generating function of a sequence  **could be infinite** , the **ordinary** one is like this：$$G(x)=\Sigma_{k=0}^{\infty}a_kx^k$$
+- 几个 generating function和序列的对应
+  - $$f(x)={1\over (1-ax)}=1+ax+a^2x^2...$$
+  - $$f(x)={1\over (1-x^r)}=1+x^r+x^{2r}...$$
+  - $$f(x)=(1+x)^n=1+C(n,1)x+C(n,2)x^2...$$
+- theorem 1 求和符号的乘法和加法：$$f(x)g(x)=\Sigma _{k=0}^{\infty}(\Sigma _{j=0}^ka_jb_{k-j})x^k$$理解成两个括号相乘然后找次数之和为k的项，再把它们的相乘后的系数加起来；加法比较简单，直接加起来就可以
+  - 可以把复杂的表达式拆开成简单的sum式，再用乘法和加法把sum式合并，就可以得到不好求得generating function
+- extended binomial coefficient：对于$$C_n^k$$，**只要n is real并且 k is nonnegative integer**，就满足$$C_n^k={n(n-1)(n-2)...(n-l+1) \over k!}$$，上面有n项；同时如果x绝对值小于1，二次项展开也满足$$(1+x)^n=\Sigma_{k=0}^{\infty}C_n^kx^k$$；注意课本得表达n 和k 上下颠倒
+- 分配问题可以转换成多项式乘法（也就是用generating 解决问题）
+- 用 generating function 求解RR
+  1. 列出G(x)
+  2. 利用RR，构造p(x)G(x)=initial condition
+  3. 解得G(x)以后将G(x)化简，再用公式和sum乘法加法得到G(x)的常数解
+  4. 其中的系数就是RR的表达式
 
 # Chapter 9. Relations
 
@@ -100,7 +148,7 @@ $$
 - directed graph or zero-one matrix
 - $$S\circ R$$的矩阵由矩阵乘法（**$$+,\cdot$$代表与、或**）$$M_R\odot M_S$$得到的结果，注意前后顺序
 - ***restricition of R to B*** is $$R\cap (B\times B)$$
--[ ] $$if\ R_1\ is\ [property1],R_2\ is\ [property2], then\ R_1*R_2 is [property3]$$
+-[x] $$if\ R_1\ is\ [property1],R_2\ is\ [property2], then\ R_1*R_2 is [property3]$$
 
 ### 9-4 Closures
 
@@ -195,7 +243,7 @@ $$
 
 - 定义二元操作的幂运算：$$a^n=a^{n-1}*a\ and\ a^0=e$$
 
-- 证明$$\forall a,b\in H\rightarrow a^-1*b\in H$$,H是G的非空子集，则H是subgroup，这个证明必须要按identity，inverse，closed的顺序，identity怎么证= =？
+- $$\forall a,b\in H\rightarrow a^-1*b\in H$$, H是G的非空子集，则H是subgroup，这个证明必须要按identity，inverse，closed的顺序，identity怎么证= =？
 
 - 规定两个semigroup(monoid,group)的笛卡尔乘积：$$(s1,t1)*''(s2,t2)=(s1*s2,t1*'t2)$$
 
@@ -225,6 +273,7 @@ $$
     H\ is\ subgroup\ of\ G\rightarrow f(H)\ is\ subgroup\ of\ G'\\
     G是某种群，则G’也是
     $$
+
 
 
 

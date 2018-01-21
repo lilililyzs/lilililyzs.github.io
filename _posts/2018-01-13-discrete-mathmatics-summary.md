@@ -227,7 +227,7 @@ $$
 
 - **free semigroup**：$$(A^*,\cdot )$$ is a semigroup
 
-- **permutation group**：对n个点进行permutation操作可以有n！种，所以$$|S_n|=n!$$
+- **permutation group**：对n个点进行permutation操作可以有n！种，所以$$\|S_n\|=n!$$
 
 
 ### 9-3 New Algebra
@@ -243,9 +243,9 @@ $$
 
 - 定义二元操作的幂运算：$$a^n=a^{n-1}*a\ and\ a^0=e$$
 
-- $$\forall a,b\in H\rightarrow a^-1*b\in H$$, H是G的非空子集，则H是subgroup，这个证明必须要按identity，inverse，closed的顺序，identity怎么证= =？
+- H是G的非空子集，$$\forall a,b\in H\rightarrow a^-1*b\in H$$，则H是subgroup，这个证明必须要按identity，inverse，closed的顺序，identity怎么证= =？
 
-- 规定两个semigroup(monoid,group)的笛卡尔乘积：$$(s1,t1)*''(s2,t2)=(s1*s2,t1*'t2)$$
+- 规定两个semigroup(monoid,group)的笛卡尔乘积也是semigroup(monoid, group)：$$(s1,t1)*''(s2,t2)=(s1*s2,t1*'t2)$$
 
 - $$Z_m \times Z_n \cong Z_{mn},if\ GCD(m,n)=1$$
 
@@ -284,9 +284,10 @@ $$
 
 
 
+
 ### 9-5 Fundamental Homomorphism Theorem and Normal Subgroup
 
-- natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$，则$$f: G\rightarrow G/R$$是**onto homomorphism**
+- natural homomorphism：有$$（G，*）\ and\ (G/R,\circledast)$$, R is congruence, 则$$f: G\rightarrow G/R$$是**onto homomorphism**
 - fundamental homorphism therome：如果$$f:S\rightarrow T$$是onto homomorphism，规定S中的R是 $$a\ R\ b \leftrightarrow f(a)=f(b)$$，则
   - R is congruence
   - $$T\cong S/R$$
